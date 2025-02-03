@@ -84,8 +84,6 @@ class _IntroScreen extends State<StatefulWidget> {
               SizedBox(height: 50),
               ElevatedButton(
                 onPressed: () {
-                  print(
-                      'Height (ft): ${heightControllerFt.text}, Height (in): ${heightControllerIn.text}, Weight (kg): ${weightControllerKg.text}');
                   if (heightControllerFt.text.isNotEmpty &&
                       weightControllerKg.text.isNotEmpty &&
                       heightControllerIn.text.isNotEmpty) {
