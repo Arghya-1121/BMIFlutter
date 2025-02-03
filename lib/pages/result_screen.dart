@@ -15,6 +15,53 @@ class ResultScreen extends StatelessWidget {
     double bmi = (weight /
         (((feet * 0.3048) + (inches * 0.0254)) *
             ((feet * 0.3048) + (inches * 0.0254))));
+    final Text comment;
+    if (bmi < 18.5) {
+      comment = Text(
+        'Under Weight!',
+        style: TextStyle(
+          fontSize: 23,
+          color: Colors.blueAccent,
+          fontWeight: FontWeight.w700,
+        ),
+      );
+    } else if (bmi < 24.9) {
+      comment = Text(
+        'Normal!',
+        style: TextStyle(
+          fontSize: 23,
+          fontWeight: FontWeight.w700,
+          color: Colors.green,
+        ),
+      );
+    } else if (bmi < 29.9) {
+      comment = Text(
+        'Over Weight!',
+        style: TextStyle(
+          fontSize: 23,
+          fontWeight: FontWeight.w700,
+          color: Colors.yellow.shade700,
+        ),
+      );
+    } else if (bmi < 34.9) {
+      comment = Text(
+        'Obese!',
+        style: TextStyle(
+          fontSize: 23,
+          fontWeight: FontWeight.w700,
+          color: Colors.deepOrangeAccent,
+        ),
+      );
+    } else {
+      comment = Text(
+        'Extremely Obese!',
+        style: TextStyle(
+          fontSize: 23,
+          fontWeight: FontWeight.w700,
+          color: Colors.red,
+        ),
+      );
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -29,12 +76,20 @@ class ResultScreen extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          spacing: 30,
           children: [
             Text(
               'Your BMI is: ${bmi.toStringAsFixed(2)}',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800),
-            )
+              style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            SizedBox(height: 30),
+            Text(
+              'You are',
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 23),
+            ),
+            comment,
           ],
         ),
       ),
