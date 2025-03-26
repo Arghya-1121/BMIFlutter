@@ -15,6 +15,9 @@ class ResultScreen extends StatelessWidget {
     double bmi = (weight /
         (((feet * 0.3048) + (inches * 0.0254)) *
             ((feet * 0.3048) + (inches * 0.0254))));
+    double minBMI = 10;
+    double maxBMI = 40;
+    double arrowPosition = ((bmi - minBMI) / (maxBMI - minBMI)).clamp(0.0, 1.0);
     final Text comment;
     if (bmi < 18.5) {
       comment = Text(
@@ -84,12 +87,46 @@ class ResultScreen extends StatelessWidget {
                 fontWeight: FontWeight.w800,
               ),
             ),
+
             SizedBox(height: 30),
+
             Text(
               'You are',
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 23),
             ),
+
             comment,
+
+            SizedBox(height: 30),
+            //needs to understand!
+            Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              Container(
+                padding: EdgeInsets.only(left:10,right:10),
+                width: 300,
+                height: 20,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.blue, // Underweight
+                      Colors.green, // Normal
+                      Colors.yellow, // Overweight
+                      Colors.red, // Obese
+                    ],
+                    stops: [0.25, 0.50, 0.75, 1.0],
+                  ),
+                ),
+              ),
+              Positioned(
+                left: arrowPosition * 280, // Adjust position within scale
+                top: -10,
+                child: Icon(Icons.arrow_drop_up_sharp, size: 40, color: Colors.black),
+              ),
+            ],
+          ),
+
           ],
         ),
       ),

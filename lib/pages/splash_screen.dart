@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:bmi/pages/intro_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +12,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreen extends State<SplashScreen> {
   @override
   void initState() {
+    super.initState();
     Timer(
       const Duration(seconds: 3),
       () => Navigator.pushReplacement(
